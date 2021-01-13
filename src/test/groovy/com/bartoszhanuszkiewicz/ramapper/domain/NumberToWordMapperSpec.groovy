@@ -8,6 +8,7 @@ class NumberToWordMapperSpec extends Specification{
 
     public static final String MAPPER_NAME = "Animals"
     public static final String MAPPER_1_VALUE = "Dog"
+    public static final String MAPPER_2_VALUE = "Cat"
     private MapperKeyValueRepository mapperKeyValueRepository
     private NumberToWordMapper mapper
 
@@ -17,17 +18,13 @@ class NumberToWordMapperSpec extends Specification{
     }
 
     def "Should map number to words"() {
-        given: "There is given number"
-            def givenNumber =  1
-        and: "There are mappings in repository"
-            mapperKeyValueRepository.getAllMappingsForMapperName(MAPPER_NAME) >> [anyMapperKeyValue(givenNumber)]
+        given: "There are mappings in repository"
+            mapperKeyValueRepository.getAllMappingsForMapperName(MAPPER_NAME) >> [anyMapperKeyValue(1, MAPPER_1_VALUE), anyMapperKeyValue(2, MAPPER_2_VALUE)]
         when: "Mapper is executed"
-            def mappingResult = mapper.map(MAPPER_NAME, givenNumber)
+            def mappingResult = mapper.map(MAPPER_NAME, 2)
         then: "Mapper returned number with mapped words"
             assert mappingResult.isPresent()
-            assert mappingResult.get().number() == givenNumber
-            assert mappingResult.get().mapperName() ==  MAPPER_NAME
-            assert mappingResult.get().mappedValue() == MAPPER_1_VALUE
+            assert mappingResult.get() == MAPPER_2_VALUE
     }
 
     def "Should not return result when there is no mappings for number"() {
@@ -41,7 +38,7 @@ class NumberToWordMapperSpec extends Specification{
             assert !mappingResult.isPresent()
     }
 
-    private def anyMapperKeyValue(int number) {
-        new MapperKeyValue(number, MAPPER_NAME, MAPPER_1_VALUE)
+    private def anyMapperKeyValue(int number, String value) {
+        new MapperKeyValue(number, MAPPER_NAME, value)
     }
 }

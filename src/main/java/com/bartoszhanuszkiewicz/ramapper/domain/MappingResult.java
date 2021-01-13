@@ -1,30 +1,22 @@
 package com.bartoszhanuszkiewicz.ramapper.domain;
 
-public class MappingResult {
+import java.util.List;
 
-    public static MappingResult from(MapperKeyValue mapperKeyValue) {
-        return new MappingResult(mapperKeyValue.number(), mapperKeyValue.mapperName(), mapperKeyValue.mappedValue());
-    }
+class MappingResult {
 
     private Integer number;
-    private String mapperName;
-    private String mappedValue;
+    private List<String> mappings;
 
-    private MappingResult(Integer number, String mapperName, String mappedValue) {
+    MappingResult(Integer number, List<String> mappings) {
         this.number = number;
-        this.mapperName = mapperName;
-        this.mappedValue = mappedValue;
+        this.mappings = mappings;
     }
 
     public Integer number() {
         return number;
     }
 
-    public String mapperName() {
-        return mapperName;
-    }
-
-    public String mappedValue() {
-        return mappedValue;
+    public List<String> mappings() {
+        return mappings;
     }
 }
