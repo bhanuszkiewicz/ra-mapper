@@ -20,7 +20,7 @@ class MappingService {
 
     private List<String> calculateDivisorsAndMap(Integer number, String mappingName) {
         return divisorsCalculator.calculate(number).stream()
-                          .map(divisor -> mapper.map(mappingName, divisor).get())
+                          .map(divisor -> mapper.map(mappingName, divisor).orElse("THERE_IS_NO_MAPPING"))
                           .collect(Collectors.toList());
     }
 }

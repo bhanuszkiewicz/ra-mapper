@@ -23,7 +23,7 @@ public class MapperKeyValueEntity {
     @Column(nullable = false)
     private Integer number;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String value;
 
     public MapperKeyValueEntity() {

@@ -24,7 +24,7 @@ class MappingServiceSpec extends Specification {
             def mappedValue = mappingService.divideAndMap(2, "Animals")
         then: "Number with mappings for divisors are correct"
             assert mappedValue.isPresent()
-            assert mappedValue.get().number() == 2
-            assert mappedValue.get().mappings().containsAll(["Dog", "Cat"])
+            assert mappedValue.get().getNumber() == 2
+            assert mappedValue.get().getMappings().containsAll(["Dog", "Cat"])
     }
 }

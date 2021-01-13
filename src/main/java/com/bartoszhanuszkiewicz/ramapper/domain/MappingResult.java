@@ -2,7 +2,7 @@ package com.bartoszhanuszkiewicz.ramapper.domain;
 
 import java.util.List;
 
-class MappingResult {
+public class MappingResult {
 
     private Integer number;
     private List<String> mappings;
@@ -12,11 +12,11 @@ class MappingResult {
         this.mappings = mappings;
     }
 
-    public Integer number() {
+    public Integer getNumber() {
         return number;
     }
 
-    public List<String> mappings() {
+    public List<String> getMappings() {
         return mappings;
     }
 }
